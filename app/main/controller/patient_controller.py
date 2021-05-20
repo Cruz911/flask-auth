@@ -1,38 +1,38 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..util.dto import UserDto
+from ..util.dto import PatientDto
 from ..service.patient_service import save_new_user, get_all_users, get_a_user
 
-api = UserDto.api
-_user = UserDto.user
+api = PatientDto.api
+_patient = PatientDto.user
 
 
-@api.route('/patient/')
+@api.route('/')
 class UserList(Resource):
-    @api.doc('list_of_registered_users')
-    @api.marshal_list_with(_user, envelope='data')
+    @api.doc('list_of_registered_patients')
+    @api.marshal_list_with(_patient, envelope='data')
     def get(self):
         """List all registered users"""
         return get_all_users()
 
-    @api.response(201, 'User successfully created.')
-    @api.doc('create a new user')
-    @api.expect(_user, validate=True)
+    @api.response(201, 'Patient successfully created.')
+    @api.doc('create a new patient')
+    @api.expect(_patient, validate=True)
     def post(self):
-        """Creates a new User """
+        """Creates a new Patient """
         data = request.json
         return save_new_user(data=data)
 
 
-@api.route('/patient/<public_id>')
-@api.param('public_id', 'The User identifier')
-@api.response(404, 'User not found.')
+@api.route('/<public_id>')
+@api.param('public_id', 'The Patient identifier')
+@api.response(404, 'Patient not found.')
 class User(Resource):
     @api.doc('get a user')
-    @api.marshal_with(_user)
+    @api.marshal_with(_patient)
     def get(self, public_id):
-        """get a user given its identifier"""
+        """get a patient given their identifier"""
         user = get_a_user(public_id)
         if not user:
             api.abort(404)

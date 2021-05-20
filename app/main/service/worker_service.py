@@ -2,13 +2,13 @@ import uuid
 import datetime
 
 from app.main import db
-from app.main.model.user import User
+from app.main.model.healthworker import Worker
 
 
 def save_new_user(data):
-    user = User.query.filter_by(email=data['email']).first()
+    user = Worker.query.filter_by(email=data['email']).first()
     if not user:
-        new_user = User(
+        new_user = Worker(
             public_id=str(uuid.uuid4()),
             email=data['email'],
             username=data['username'],
@@ -26,11 +26,11 @@ def save_new_user(data):
 
 
 def get_all_users():
-    return User.query.all()
+    return Worker.query.all()
 
 
 def get_a_user(public_id):
-    return User.query.filter_by(public_id=public_id).first()
+    return Worker.query.filter_by(public_id=public_id).first()
 
 def generate_token(user):
     try:

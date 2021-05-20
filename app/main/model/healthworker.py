@@ -4,8 +4,8 @@ import jwt
 from app.main.model.blacklist import BlacklistToken
 from ..config import key
 
-class User(db.Model):
-    """ User Model for storing user related details """
+class Worker(db.Model):
+    """ Healthworker Model for storing healthworker related details """
     __tablename__ = "healthworker"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
