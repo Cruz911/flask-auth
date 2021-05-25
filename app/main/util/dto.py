@@ -35,7 +35,16 @@ class WorkerDto:
         'public_id': fields.String(description='user Identifier')
     })
     
-class CentretDto:
+class CentreDto:
+    api = Namespace('healthcentre', description='healthcentre related operations')
+    user = api.model('healthcentre', {
+        'email': fields.String(required=True, description='user email address'),
+        'username': fields.String(required=True, description='user username'),
+        'password': fields.String(required=True, description='user password'),
+        'public_id': fields.String(description='user Identifier')
+    })
+    
+class JobDto:
     api = Namespace('healthcentre', description='healthcentre related operations')
     user = api.model('healthcentre', {
         'email': fields.String(required=True, description='user email address'),

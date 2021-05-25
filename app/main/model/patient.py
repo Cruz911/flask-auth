@@ -18,6 +18,7 @@ class Patient(db.Model):
     age = db.Column(db.Integer())
     sex = db.Column(db.String(50))
     address = db.Column(db.String(200))
+    district = db.Column(db.String(50))
     phone_number = db.Column(db.Integer())
     diagnosis = db.Column(db.String(200))
     plan = db.Column(db.String(200))
@@ -25,6 +26,8 @@ class Patient(db.Model):
     allergies = db.Column(db.String(200))
     occupation = db.Column(db.String(100))
     marital_status = db.Column(db.String(50))
+    aid = db.Column(db.Boolean, nullable=False, default=False)
+    job = db.Column(db.Boolean, nullable=False, default=False)
 
     @property
     def password(self):
