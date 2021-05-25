@@ -45,8 +45,17 @@ class CentreDto:
     })
     
 class JobDto:
-    api = Namespace('healthcentre', description='healthcentre related operations')
-    user = api.model('healthcentre', {
+    api = Namespace('job', description='jobcentre related operations')
+    user = api.model('job', {
+        'email': fields.String(required=True, description='user email address'),
+        'username': fields.String(required=True, description='user username'),
+        'password': fields.String(required=True, description='user password'),
+        'public_id': fields.String(description='user Identifier')
+    })
+    
+class AidDto:
+    api = Namespace('aid', description='aid and donations related operations')
+    user = api.model('aid', {
         'email': fields.String(required=True, description='user email address'),
         'username': fields.String(required=True, description='user username'),
         'password': fields.String(required=True, description='user password'),

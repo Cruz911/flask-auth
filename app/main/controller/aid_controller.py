@@ -1,11 +1,11 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..util.dto import JobDto
+from ..util.dto import AidDto
 from ..service.jobservice import save_new_job, get_a_job_by_district, get_all_jobs, get_a_job
 
-api = JobDto.api
-_aid = JobDto.user
+api = AidDto.api
+_aid = AidDto.user
 
 
 @api.route('/')

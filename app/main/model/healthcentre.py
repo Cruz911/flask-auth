@@ -67,4 +67,4 @@ class Centre(db.Model):
             return 'Invalid token. Please log in again.'
     
     def __repr__(self):
-        return "<User '{}'>".format(self.username)
+        return "<Centre '{}'>".format(self.username)
