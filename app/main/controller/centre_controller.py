@@ -1,11 +1,11 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..util.dto import CentretDto
+from ..util.dto import CentreDto
 from ..service.centre_service import save_new_user, get_all_users, get_a_user
 
-api = CentretDto.api
-_user = CentretDto.user
+api = CentreDto.api
+_user = CentreDto.user
 
 
 @api.route('/')
