@@ -48,9 +48,12 @@ class JobDto:
     api = Namespace('job', description='jobcentre related operations')
     user = api.model('job', {
         'email': fields.String(required=True, description='user email address'),
-        'username': fields.String(required=True, description='user username'),
-        'password': fields.String(required=True, description='user password'),
-        'public_id': fields.String(description='user Identifier')
+        'title': fields.String(requred=True, description='job title'),
+        'description': fields.String(requred=True, description='job description'),
+        'status': fields.String(requred=True, description='job status'),
+        'district': fields.String(requred=True, description='district'),
+        'no_of_patients': fields.Integer(requred=True, description='required number')
+
     })
     
 class AidDto:
