@@ -9,14 +9,13 @@ def save_new_user(data):
     user = Centre.query.filter_by(email=data['email']).first()
     if not user:
         new_user = Centre(
-            public_id=str(uuid.uuid4()),
             email=data['email'],
             username=data['username'],
             password=data['password'],
             registered_on=datetime.datetime.utcnow()
         )
         save_changes(new_user)
-        return generate_token(new_user)
+        return data, 200
     else:
         response_object = {
             'status': 'fail',
@@ -29,8 +28,8 @@ def get_all_users():
     return Centre.query.all()
 
 
-def get_a_user(public_id):
-    return Centre.query.filter_by(public_id=public_id).first()
+def get_a_user(id):
+    return Centre.query.filter_by(id=id).first()
 
 def generate_token(user):
     try:

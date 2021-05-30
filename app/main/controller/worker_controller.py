@@ -25,15 +25,15 @@ class WorkerList(Resource):
         return save_new_user(data=data)
 
 
-@api.route('/<public_id>')
-@api.param('public_id', 'The Worker identifier')
+@api.route('/<id>')
+@api.param('id', 'The Worker identifier')
 @api.response(404, 'Worker not found.')
 class Worker(Resource):
     @api.doc('get a worker')
     @api.marshal_with(_worker)
-    def get(self, public_id):
+    def get(self, id):
         """get a worker given their identifier"""
-        user = get_a_user(public_id)
+        user = get_a_user(id)
         if not user:
             api.abort(404)
         else:

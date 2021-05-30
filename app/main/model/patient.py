@@ -12,7 +12,6 @@ class Patient(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
-    public_id = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(50))
     password_hash = db.Column(db.String(100))
     age = db.Column(db.Integer())
@@ -80,4 +79,4 @@ class Patient(db.Model):
             return 'Invalid token. Please log in again.'
     
     def __repr__(self):
-        return "<User '{}'>".format(self.username)
+        return "<Patient '{}'>".format(self.name)

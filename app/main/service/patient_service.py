@@ -9,14 +9,26 @@ def save_new_user(data):
     user = Patient.query.filter_by(email=data['email']).first()
     if not user:
         new_user = Patient(
-            public_id=str(uuid.uuid4()),
-            email=data['email'],
-            username=data['username'],
-            password=data['password'],
+            email = data['email'],
+            name = data['name'],
+            password = data['password'],
+            age = data['age'],
+            sex = data['sex'],
+            address = data['address'],
+            district = data['district'],
+            phone_number = data['phone_number'],
+            diagnosis = data['diagnosis'],
+            plan = data['plan'],
+            complaints = data['complaints'],
+            allergies = data['allergies'],
+            occupation = data['occupation'],
+            marital_status = data['marital_status'],
+            aid = data['aid'],
+            job = data['job'],
             registered_on=datetime.datetime.utcnow()
         )
         save_changes(new_user)
-        return generate_token(new_user)
+        return data, 200
     else:
         response_object = {
             'status': 'fail',
@@ -29,8 +41,8 @@ def get_all_users():
     return Patient.query.all()
 
 
-def get_a_user(public_id):
-    return Patient.query.filter_by(public_id=public_id).first()
+def get_a_user(id):
+    return Patient.query.filter_by(id=id).first()
 
 def generate_token(user):
     try:

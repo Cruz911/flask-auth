@@ -25,15 +25,15 @@ class UserList(Resource):
         return save_new_user(data=data)
 
 
-@api.route('/<public_id>')
-@api.param('public_id', 'The Centre identifier')
+@api.route('/<id>')
+@api.param('id', 'The Centre identifier')
 @api.response(404, 'Centre not found.')
 class User(Resource):
     @api.doc('get a centre')
     @api.marshal_with(_user)
-    def get(self, public_id):
+    def get(self, id):
         """get a centre given its identifier"""
-        user = get_a_user(public_id)
+        user = get_a_user(id)
         if not user:
             api.abort(404)
         else:
